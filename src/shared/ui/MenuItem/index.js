@@ -9,13 +9,17 @@ const MenuItem = ({children, label}) => {
         <MenuItemDiv onMouseOver={() => setIsHidden(false)} onMouseOut={() => setIsHidden(true)}>
             {label}
             {
-                <MenuPad
+                <MenuPadArea  
                     isHidden={isHidden} 
                     onMouseOver = {() => setIsHidden(false)}  
                     onMouseOut={() => setIsHidden(true)}
                 >
-                    {children}
-                </MenuPad>
+                    <MenuPad
+                       
+                    >
+                        {children}
+                    </MenuPad>
+                </MenuPadArea>
             }
         </MenuItemDiv>
     )
@@ -33,16 +37,23 @@ const MenuItemDiv = htmlStyled.div`
     }
 `
 
-const MenuPad = htmlStyled.div`
-    border: 1px solid gray;
-    border-radius : 5px;
-
-    padding : 10px;
-
+const MenuPadArea = htmlStyled.div`
+    display : ${props => props.isHidden ? "none" : "block"} ;
     position : absolute;
-    background-color : white;
+
+    left : -50px;
 
     z-index : 1000;
+`
 
-    display : ${props => props.isHidden ? "none" : "block"}
+const MenuPad = htmlStyled.div`
+    margin-top : 20px;
+
+    box-shadow : 1px 1px 9px 0px grey;
+
+    padding : 40px;
+
+    background-color : white;
+
+
 `
